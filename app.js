@@ -2,7 +2,18 @@ const express=require('express')
 const app=express()
 const port=3000
 const exphbs=require('express-handlebars')
-
+// 載入mongoose
+const mongoose=require('mongoose')
+// 非正式環境下使用dotenv
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config()
+}
+// 連線到MongoDB
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true})
+// 取得連線狀況
+const db=mongoose.connection
+db.on('error',()=>{console.log(error)})
+db.once('open',()=>{console.log('mongoose connected')})
 // 載入餐廳JSON檔
 const restaurant=require('./restaurant.json')
 // 設定handlebar
