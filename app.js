@@ -47,13 +47,22 @@ app.post('/restaurants',(req,res)=>{
     .catch(error=>{console.log(error)})
 })
 
-// 設定動態路由顯示show局部樣版(restaurant detail)
-app.get('/restaurants/:restaurant_id',(req,res)=>{
-  const restaurantDetail=restaurant.results.find(function(restaurants){
-      return req.params.restaurant_id === restaurants.id.toString()
-  })
-    res.render('show', { restaurant: restaurantDetail })
+// 餐廳詳細資料路由
+app.get('/restaurants/:id',(req,res)=>{
+    const id=req.params.id
+    return restaurants.findById(id)
+    .lean()
+    .then(restaurantDetail=>res.render('show',{restaurantDetail}))
+    .catch(error=>console.log(error))
 })
+
+// 設定動態路由顯示show局部樣版(restaurant detail)
+// app.get('/restaurants/:restaurant_id',(req,res)=>{
+//   const restaurantDetail=restaurant.results.find(function(restaurants){
+//       return req.params.restaurant_id === restaurants.id.toString()
+//   })
+//     res.render('show', { restaurantDetail: restaurantDetail })
+// })
 
 
 // 啟動伺服器並監聽
