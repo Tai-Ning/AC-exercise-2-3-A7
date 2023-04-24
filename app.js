@@ -18,10 +18,12 @@ db.once('open',()=>{console.log('mongoose connected')})
 // 載入model
 const restaurants=require('./models/restaurant')
 const restaurant = require('./models/restaurant')
-
+// body-parser
+app.use(express.urlencoded({extended:true}))
 // 設定handlebar
 app.engine('handlebars',exphbs({defaultLayout:'main'}))
 app.set('view engine','handlebars')
+
 // 設定靜態檔案路由
 app.use(express.static('public'))
 
@@ -33,7 +35,22 @@ app.get('/',(req,res)=>{
     .catch(error=>console.log(error))
 })
 
-
+// 新增餐廳表單路由
+app.get('/restaurants/new',(req,res)=>{
+    res.render('new')
+})
+// 新增餐廳資料路由
+app.post('/restaurants',(req,res)=>{
+//  const name=req.body.name
+//  const category=req.body.category
+//  const image=req.body.image
+//  const location=req.body.location
+//  const phone=req.body.phone
+//  const google_map=req.body.google_map
+//  const rating=req.body.rating
+//  const description=req.body.description
+ return console.log(req.body)
+})
 
 // 設定動態路由顯示show局部樣版(restaurant detail)
 app.get('/restaurants/:restaurant_id',(req,res)=>{
