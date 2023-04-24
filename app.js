@@ -41,15 +41,10 @@ app.get('/restaurants/new',(req,res)=>{
 })
 // 新增餐廳資料路由
 app.post('/restaurants',(req,res)=>{
-//  const name=req.body.name
-//  const category=req.body.category
-//  const image=req.body.image
-//  const location=req.body.location
-//  const phone=req.body.phone
-//  const google_map=req.body.google_map
-//  const rating=req.body.rating
-//  const description=req.body.description
- return console.log(req.body)
+ const newrestaurant =req.body
+    return restaurants.create(newrestaurant)
+    .then(()=>res.redirect('/'))
+    .catch(error=>{console.log(error)})
 })
 
 // 設定動態路由顯示show局部樣版(restaurant detail)

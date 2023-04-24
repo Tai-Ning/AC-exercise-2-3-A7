@@ -25,7 +25,6 @@
                 {{#each restaurant}}
                 <div class="col mb-4">
                 <div class="card">
-                <a href="/restaurants/{{this._id}}" class="text-secondary">
                 <div class="card mb-3">
                  <img class="card-img-top" src="{{this.image}}"
             alt="{{this.name}}">
@@ -40,7 +39,7 @@
                 </span>
                 </div>
                 </div>
-                </a>
+               
                 <div class="card-links mt-1 ">
                 <a href="./restaurants/{{this._id}}/edit" >Edit</a>
                 <a href="./restaurants/{{this._id}}" >Detail</a>
