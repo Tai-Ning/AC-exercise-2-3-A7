@@ -1,0 +1,32 @@
+<form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+<div class="col">
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="name" name="name" value="{{restaurant.name}}">
+    </div>
+    <div class=" col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="category" name="category" value="{{restaurant.category}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="image url" name="image" value="{{restaurant.image}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="location" name="location" value="{{restaurant.location}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="phone" name="phone" value="{{restaurant.phone}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="google map url" name="google_map" value="{{restaurant.google_map}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="rating" name="rating" value="{{restaurant.rating}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <input type="text" placeholder="description" name="description" value="{{restaurant.description}}">
+    </div>
+    <div class="col-sm-15 mb-3 d-flex justify-content-center">
+        <button type="submit">save</button>
+        <a href="/"> back </a>
+    </div>
+</div>
+</form>

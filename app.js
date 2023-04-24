@@ -56,15 +56,29 @@ app.get('/restaurants/:id',(req,res)=>{
     .catch(error=>console.log(error))
 })
 
-// 設定動態路由顯示show局部樣版(restaurant detail)
-// app.get('/restaurants/:restaurant_id',(req,res)=>{
-//   const restaurantDetail=restaurant.results.find(function(restaurants){
-//       return req.params.restaurant_id === restaurants.id.toString()
-//   })
-//     res.render('show', { restaurantDetail: restaurantDetail })
-// })
+// 設定編輯路由
+app.get('/restaurants/:id/edit',(req,res)=>{
+    const id = req.params.id
+    return restaurants.findById(id)
+    .lean()
+    .then(restaurant=>res.render('edit',{restaurant}))
+    .catch(error => console.log(error))
+})
 
+// 存取編輯內容路由
+app.post('/restaurants/:id/edit', (req, res) => {
+    const id=req.params.id
+    const editDetail=req.body
 
+    return restaurants.findById(id)
+    .then(restaurant=>{
+      
+        Object.assign(restaurant,editDetail)
+        return restaurant.save()
+    })
+    .then(()=>res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 // 啟動伺服器並監聽
 app.listen(port,()=>{
     console.log(`localhost:${port}`)
