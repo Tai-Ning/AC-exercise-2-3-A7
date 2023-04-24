@@ -15,6 +15,10 @@ const db=mongoose.connection
 db.on('error',()=>{console.log(error)})
 db.once('open',()=>{console.log('mongoose connected')})
 
+// 載入model
+const restaurants=require('./models/restaurant')
+const restaurant = require('./models/restaurant')
+
 // 設定handlebar
 app.engine('handlebars',exphbs({defaultLayout:'main'}))
 app.set('view engine','handlebars')
@@ -23,16 +27,13 @@ app.use(express.static('public'))
 
 // 顯示index局部樣版(restaurant list)
 app.get('/',(req,res)=>{
-    res.render('index',{restaurants:restaurant.results})
+    restaurants.find()
+    .lean()
+    .then(restaurant=>res.render('index',{restaurant}))
+    .catch(error=>console.log(error))
 })
 
-// 設定搜尋引擎路由
-app.get('/search',(req,res)=>{
-    const restaurants=restaurant.results.filter(function(restaurantList){
-        return restaurantList.name.toLowerCase().includes(req.query.keyword.toLowerCase()) || restaurantList.category.includes(req.query.keyword)
-    })
-    res.render('index', { restaurants: restaurants,keyword:req.query.keyword })
-})
+
 
 // 設定動態路由顯示show局部樣版(restaurant detail)
 app.get('/restaurants/:restaurant_id',(req,res)=>{
