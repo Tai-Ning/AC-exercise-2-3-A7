@@ -14,8 +14,7 @@ mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopolog
 const db=mongoose.connection
 db.on('error',()=>{console.log(error)})
 db.once('open',()=>{console.log('mongoose connected')})
-// 載入餐廳JSON檔
-const restaurant=require('./restaurant.json')
+
 // 設定handlebar
 app.engine('handlebars',exphbs({defaultLayout:'main'}))
 app.set('view engine','handlebars')
