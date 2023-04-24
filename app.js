@@ -79,6 +79,16 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .then(()=>res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
+
+//  刪除路由
+app.post('/restaurants/:id/delete',(req,res)=>{
+    const id=req.params.id
+    return restaurants.findById(id)
+    .then(restaurant=>restaurant.remove())
+    .then(()=>res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 // 啟動伺服器並監聽
 app.listen(port,()=>{
     console.log(`localhost:${port}`)
