@@ -20,7 +20,7 @@
 
 ## 安裝與執行步驟
 1. 打開terminal，複製此專案至電腦：  
-在terminal 輸入 `git clone https://github.com/Tai-Ning/AC-exercise-2-3.git`
+在terminal 輸入 `git clone https://github.com/Tai-Ning/AC-exercise-2-3-A7.git`
 2. 進入放置專案的本機資料夾：  
 在terminal 輸入 `cd 專案資料夾名稱`
 3. 安裝npm套件：  
